@@ -8,10 +8,10 @@ class App extends Component {
     super();
 
     this.state = {
-      name: {firstName: 'Dave', lastName: 'Dent'},
+      name: { firstName: "Dave", lastName: "Dent" },
       age: 40,
-      company: 'Google'
-    }
+      company: "Google",
+    };
   }
 
   render() {
@@ -20,11 +20,26 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>
-            Hi {this.state.name.firstName} {this.state.name.lastName}. I am {this.state.age} years old. I work at {this.state.company}
+            Hi {this.state.name.firstName} {this.state.name.lastName}. I am{" "}
+            {this.state.age} years old. I work at {this.state.company}
           </p>
-          <button onClick={() => {
-            this.setState({name: {firstName: 'Andrei', lastName: 'Alan'}, age: '20'});
-          }}>
+          <button
+            onClick={() => {
+              // this.setState({name: {firstName: 'Andrei', lastName: 'Alan'}, age: '20'});
+              this.setState(
+                () => {
+                  return {
+                    name: { firstName: "Andrei", lastName: "Alan" },
+                    age: "20",
+                  };
+                },
+                () => {
+                  // follow up call back after async set state changes
+                  console.log(this.state);
+                }
+              );
+            }}
+          >
             Change Name
           </button>
         </header>
