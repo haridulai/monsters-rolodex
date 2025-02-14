@@ -9,7 +9,7 @@ class App extends Component {
 
     this.state = {
       monsters: [],
-      searchField: ''
+      searchField: "",
     };
   }
 
@@ -17,11 +17,9 @@ class App extends Component {
     fetch("https://jsonplaceholder.typicode.com/users")
       .then((response) => response.json())
       .then((users) => {
-        this.setState(
-          () => {
-            return { monsters: users };
-          }
-        );
+        this.setState(() => {
+          return { monsters: users };
+        });
       });
   }
 
@@ -33,7 +31,6 @@ class App extends Component {
   };
 
   render() {
-
     const { monsters, searchField } = this.state;
     const { onSearchChange } = this;
 
@@ -43,9 +40,14 @@ class App extends Component {
 
     return (
       <div className="App">
-        
-        <SearchBox onChangeHandler={onSearchChange} placeholder="search monsters" className="search-box" />
-        <CardList monsters={filteredMonsters}/>
+        <h1 className="app-title">Monsters Rolodex</h1>
+
+        <SearchBox
+          onChangeHandler={onSearchChange}
+          placeholder="search monsters"
+          className="search-box"
+        />
+        <CardList monsters={filteredMonsters} />
       </div>
     );
   }
